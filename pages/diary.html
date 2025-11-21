@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Учебный дневник - Темираев Максим</title>
+    
+    <!-- Critical theme initialization -->
+    <script>
+        (function() {
+            // Set theme immediately to prevent flash
+            try {
+                const savedTheme = localStorage.getItem('theme');
+                const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+                const theme = savedTheme || (systemPrefersDark ? 'dark' : 'light');
+                
+                document.documentElement.setAttribute('data-theme', theme);
+                window.initialTheme = theme;
+            } catch (e) {
+                document.documentElement.setAttribute('data-theme', 'light');
+            }
+        })();
+    </script>
+    
+    <link rel="stylesheet" href="../styles/styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <nav class="nav container">
+            <div class="nav__brand">
+                <div class="logo">TM</div>
+                <span class="nav__name">Темираев Максим</span>
+            </div>
+            <ul class="nav__menu">
+                <li class="nav__item"><a href="../index.html" class="nav__link">Главная</a></li>
+                <li class="nav__item"><a href="projects.html" class="nav__link">Проекты</a></li>
+                <li class="nav__item"><a href="diary.html" class="nav__link active">Дневник</a></li>
+                <li class="nav__item"><a href="contacts.html" class="nav__link">Контакты</a></li>
+            </ul>
+            <div class="nav__actions">
+                <button class="theme-toggle" id="themeToggle">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <button class="nav__toggle" id="navToggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <main class="main">
+        <div class="container">
+            <div class="page-header">
+                <h1 class="page-title">Учебный дневник</h1>
+                <p class="page-subtitle">Отслеживание образовательного прогресса</p>
+            </div>
+
+            <div class="diary-layout">
+                <!-- Progress Section -->
+                <section class="progress-section">
+                    <h2 class="section-title">Текущие курсы</h2>
+                    <div class="courses-grid">
+                        <div class="course-card">
+                            <div class="course__header">
+                                <i class="fas fa-code course__icon"></i>
+                                <h3 class="course__title">Веб-разработка</h3>
+                            </div>
+                            <div class="course__progress">
+                                <div class="progress-bar large">
+                                    <div class="progress-fill" style="width: 90%"></div>
+                                </div>
+                                <span class="course__percentage">90%</span>
+                            </div>
+                            <div class="course__stats">
+                                <div class="stat">
+                                    <span class="stat__value">45</span>
+                                    <span class="stat__label">уроков</span>
+                                </div>
+                                <div class="stat">
+                                    <span class="stat__value">12</span>
+                                    <span class="stat__label">проектов</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="course-card">
+                            <div class="course__header">
+                                <i class="fab fa-js course__icon"></i>
+                                <h3 class="course__title">JavaScript</h3>
+                            </div>
+                            <div class="course__progress">
+                                <div class="progress-bar large">
+                                    <div class="progress-fill" style="width: 70%"></div>
+                                </div>
+                                <span class="course__percentage">70%</span>
+                            </div>
+                            <div class="course__stats">
+                                <div class="stat">
+                                    <span class="stat__value">30</span>
+                                    <span class="stat__label">уроков</span>
+                                </div>
+                                <div class="stat">
+                                    <span class="stat__value">8</span>
+                                    <span class="stat__label">проектов</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="course-card">
+                            <div class="course__header">
+                                <i class="fab fa-react course__icon"></i>
+                                <h3 class="course__title">React</h3>
+                            </div>
+                            <div class="course__progress">
+                                <div class="progress-bar large">
+                                    <div class="progress-fill" style="width: 50%"></div>
+                                </div>
+                                <span class="course__percentage">50%</span>
+                            </div>
+                            <div class="course__stats">
+                                <div class="stat">
+                                    <span class="stat__value">20</span>
+                                    <span class="stat__label">уроков</span>
+                                </div>
+                                <div class="stat">
+                                    <span class="stat__value">5</span>
+                                    <span class="stat__label">проектов</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Diary Entries -->
+                <section class="entries-section">
+                    <div class="entries-header">
+                        <h2 class="section-title">Последние записи</h2>
+                        <button class="btn btn--primary" id="addEntryBtn">
+                            <i class="fas fa-plus"></i>
+                            Добавить запись
+                        </button>
+                    </div>
+                    <div class="timeline">
+                        <div class="timeline-item completed">
+                            <div class="timeline__marker">
+                                <i class="fas fa-check"></i>
+                            </div>
+                            <div class="timeline__content">
+                                <h3 class="timeline__title">Верстка макета сайта</h3>
+                                <span class="timeline__date">15 декабря 2024</span>
+                                <p class="timeline__description">
+                                    Завершил верстку адаптивного макета портфолио. Использовал CSS Grid и Flexbox для создания современного дизайна.
+                                </p>
+                                <div class="timeline__tags">
+                                    <span class="tag tag--html">HTML</span>
+                                    <span class="tag tag--css">CSS</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item completed">
+                            <div class="timeline__marker">
+                                <i class="fas fa-check"></i>
+                            </div>
+                            <div class="timeline__content">
+                                <h3 class="timeline__title">JavaScript основы</h3>
+                                <span class="timeline__date">10 декабря 2024</span>
+                                <p class="timeline__description">
+                                    Изучил основы JavaScript: переменные, функции, DOM manipulation. Создал первое интерактивное приложение.
+                                </p>
+                                <div class="timeline__tags">
+                                    <span class="tag tag--js">JavaScript</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item in-progress">
+                            <div class="timeline__marker">
+                                <i class="fas fa-sync-alt"></i>
+                            </div>
+                            <div class="timeline__content">
+                                <h3 class="timeline__title">Работа с формами</h3>
+                                <span class="timeline__date">5 декабря 2024</span>
+                                <p class="timeline__description">
+                                    Изучаю валидацию форм, работу с различными типами input и создание пользовательских валидаторов.
+                                </p>
+                                <div class="timeline__tags">
+                                    <span class="tag tag--js">JavaScript</span>
+                                    <span class="tag tag--forms">Forms</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item in-progress">
+                            <div class="timeline__marker">
+                                <i class="fas fa-sync-alt"></i>
+                            </div>
+                            <div class="timeline__content">
+                                <h3 class="timeline__title">Адаптивный дизайн</h3>
+                                <span class="timeline__date">1 декабря 2024</span>
+                                <p class="timeline__description">
+                                    Углубляю знания в области responsive design. Изучаю медиа-запросы и mobile-first подход.
+                                </p>
+                                <div class="timeline__tags">
+                                    <span class="tag tag--css">CSS</span>
+                                    <span class="tag tag--responsive">Responsive</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer__content">
+                <div class="footer__copyright">
+                    &copy; 2024 Темираев Максим. Все права защищены.
+                </div>
+                <div class="footer__links">
+                    <a href="contacts.html" class="footer__link">Контакты</a>
+                    <a href="#" class="footer__link">Политика конфиденциальности</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../scripts/main.js"></script>
+</body>
+</html>

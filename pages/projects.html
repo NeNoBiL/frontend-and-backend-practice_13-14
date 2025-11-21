@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Проекты - Темираев Максим</title>
+    
+    <!-- Critical theme initialization -->
+    <script>
+        (function() {
+            // Set theme immediately to prevent flash
+            try {
+                const savedTheme = localStorage.getItem('theme');
+                const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+                const theme = savedTheme || (systemPrefersDark ? 'dark' : 'light');
+                
+                document.documentElement.setAttribute('data-theme', theme);
+                window.initialTheme = theme;
+            } catch (e) {
+                document.documentElement.setAttribute('data-theme', 'light');
+            }
+        })();
+    </script>
+    
+    <link rel="stylesheet" href="../styles/styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <nav class="nav container">
+            <div class="nav__brand">
+                <div class="logo">TM</div>
+                <span class="nav__name">Темираев Максим</span>
+            </div>
+            <ul class="nav__menu">
+                <li class="nav__item"><a href="../index.html" class="nav__link">Главная</a></li>
+                <li class="nav__item"><a href="projects.html" class="nav__link active">Проекты</a></li>
+                <li class="nav__item"><a href="diary.html" class="nav__link">Дневник</a></li>
+                <li class="nav__item"><a href="contacts.html" class="nav__link">Контакты</a></li>
+            </ul>
+            <div class="nav__actions">
+                <button class="theme-toggle" id="themeToggle">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <button class="nav__toggle" id="navToggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <main class="main">
+        <div class="container">
+            <div class="page-header">
+                <h1 class="page-title">Мои проекты</h1>
+                <p class="page-subtitle">Коллекция учебных и личных работ</p>
+            </div>
+
+            <!-- Filters -->
+            <div class="filters">
+                <button class="filter-btn active" data-filter="all">Все</button>
+                <button class="filter-btn" data-filter="html">HTML/CSS</button>
+                <button class="filter-btn" data-filter="js">JavaScript</button>
+                <button class="filter-btn" data-filter="react">React</button>
+            </div>
+
+            <!-- Projects Grid -->
+            <div class="projects-grid detailed">
+                <!-- Project 1 -->
+                <div class="project-card" data-category="html">
+                    <div class="project__image large">
+                        <div class="project__tags">
+                            <span class="tag tag--html">HTML</span>
+                            <span class="tag tag--css">CSS</span>
+                            <span class="tag tag--responsive">Адаптивный</span>
+                        </div>
+                    </div>
+                    <div class="project__content">
+                        <h3 class="project__title">Личный сайт-портфолио</h3>
+                        <p class="project__description">
+                            Современный адаптивный веб-сайт с анимациями, темной темой и интерактивными элементами.
+                        </p>
+                        <div class="project__features">
+                            <span class="feature">Адаптивный дизайн</span>
+                            <span class="feature">CSS Grid & Flexbox</span>
+                            <span class="feature">JavaScript анимации</span>
+                        </div>
+                        <div class="project__links">
+                            <a href="#" class="btn btn--small btn--primary">
+                                <i class="fas fa-external-link-alt"></i>
+                                Демо
+                            </a>
+                            <a href="#" class="btn btn--small btn--secondary">
+                                <i class="fab fa-github"></i>
+                                Код
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="project-card" data-category="js">
+                    <div class="project__image large">
+                        <div class="project__tags">
+                            <span class="tag tag--js">JavaScript</span>
+                            <span class="tag tag--localstorage">LocalStorage</span>
+                        </div>
+                    </div>
+                    <div class="project__content">
+                        <h3 class="project__title">Todo-приложение</h3>
+                        <p class="project__description">
+                            Полнофункциональное приложение для управления задачами с возможностью фильтрации, поиска и локального сохранения данных.
+                        </p>
+                        <div class="project__features">
+                            <span class="feature">CRUD операции</span>
+                            <span class="feature">Local Storage</span>
+                            <span class="feature">Фильтрация</span>
+                        </div>
+                        <div class="project__links">
+                            <a href="#" class="btn btn--small btn--primary">
+                                <i class="fas fa-external-link-alt"></i>
+                                Демо
+                            </a>
+                            <a href="#" class="btn btn--small btn--secondary">
+                                <i class="fab fa-github"></i>
+                                Код
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 3 -->
+                <div class="project-card" data-category="react">
+                    <div class="project__image large">
+                        <div class="project__tags">
+                            <span class="tag tag--react">React</span>
+                            <span class="tag tag--api">API</span>
+                            <span class="tag tag--responsive">Адаптивный</span>
+                        </div>
+                    </div>
+                    <div class="project__content">
+                        <h3 class="project__title">Интернет-магазин</h3>
+                        <p class="project__description">
+                            Прототип интернет-магазина с корзиной товаров, фильтрацией по категориям и оформлением заказа.
+                        </p>
+                        <div class="project__features">
+                            <span class="feature">React Hooks</span>
+                            <span class="feature">Context API</span>
+                            <span class="feature">REST API</span>
+                        </div>
+                        <div class="project__links">
+                            <a href="#" class="btn btn--small btn--primary">
+                                <i class="fas fa-external-link-alt"></i>
+                                Демо
+                            </a>
+                            <a href="#" class="btn btn--small btn--secondary">
+                                <i class="fab fa-github"></i>
+                                Код
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 4 -->
+                <div class="project-card" data-category="html">
+                    <div class="project__image large">
+                        <div class="project__tags">
+                            <span class="tag tag--html">HTML</span>
+                            <span class="tag tag--css">CSS</span>
+                            <span class="tag tag--bootstrap">Bootstrap</span>
+                        </div>
+                    </div>
+                    <div class="project__content">
+                        <h3 class="project__title">Лендинг компании</h3>
+                        <p class="project__description">
+                            Современный лендинг для IT-компании с анимациями, формой обратной связи и адаптивным дизайном.
+                        </p>
+                        <div class="project__features">
+                            <span class="feature">Bootstrap 5</span>
+                            <span class="feature">CSS анимации</span>
+                            <span class="feature">Формы</span>
+                        </div>
+                        <div class="project__links">
+                            <a href="#" class="btn btn--small btn--primary">
+                                <i class="fas fa-external-link-alt"></i>
+                                Демо
+                            </a>
+                            <a href="#" class="btn btn--small btn--secondary">
+                                <i class="fab fa-github"></i>
+                                Код
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer__content">
+                <div class="footer__copyright">
+                    &copy; 2024 Темираев Максим. Все права защищены.
+                </div>
+                <div class="footer__links">
+                    <a href="contacts.html" class="footer__link">Контакты</a>
+                    <a href="#" class="footer__link">Политика конфиденциальности</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../scripts/main.js"></script>
+</body>
+</html>
