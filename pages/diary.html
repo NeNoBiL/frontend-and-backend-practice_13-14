@@ -143,13 +143,19 @@
                             Добавить запись
                         </button>
                     </div>
-                    <div class="timeline">
+                    <div class="timeline" id="timeline">
+                        <!-- Записи будут добавляться сюда динамически -->
                         <div class="timeline-item completed">
                             <div class="timeline__marker">
                                 <i class="fas fa-check"></i>
                             </div>
                             <div class="timeline__content">
-                                <h3 class="timeline__title">Верстка макета сайта</h3>
+                                <div class="timeline__header">
+                                    <h3 class="timeline__title">Верстка макета сайта</h3>
+                                    <button class="timeline__delete" onclick="deleteEntry(this)">
+                                        <i class="fas fa-times"></i>
+                                    </button>
+                                </div>
                                 <span class="timeline__date">15 декабря 2024</span>
                                 <p class="timeline__description">
                                     Завершил верстку адаптивного макета портфолио. Использовал CSS Grid и Flexbox для создания современного дизайна.
@@ -166,7 +172,12 @@
                                 <i class="fas fa-check"></i>
                             </div>
                             <div class="timeline__content">
-                                <h3 class="timeline__title">JavaScript основы</h3>
+                                <div class="timeline__header">
+                                    <h3 class="timeline__title">JavaScript основы</h3>
+                                    <button class="timeline__delete" onclick="deleteEntry(this)">
+                                        <i class="fas fa-times"></i>
+                                    </button>
+                                </div>
                                 <span class="timeline__date">10 декабря 2024</span>
                                 <p class="timeline__description">
                                     Изучил основы JavaScript: переменные, функции, DOM manipulation. Создал первое интерактивное приложение.
@@ -182,7 +193,12 @@
                                 <i class="fas fa-sync-alt"></i>
                             </div>
                             <div class="timeline__content">
-                                <h3 class="timeline__title">Работа с формами</h3>
+                                <div class="timeline__header">
+                                    <h3 class="timeline__title">Работа с формами</h3>
+                                    <button class="timeline__delete" onclick="deleteEntry(this)">
+                                        <i class="fas fa-times"></i>
+                                    </button>
+                                </div>
                                 <span class="timeline__date">5 декабря 2024</span>
                                 <p class="timeline__description">
                                     Изучаю валидацию форм, работу с различными типами input и создание пользовательских валидаторов.
@@ -199,7 +215,12 @@
                                 <i class="fas fa-sync-alt"></i>
                             </div>
                             <div class="timeline__content">
-                                <h3 class="timeline__title">Адаптивный дизайн</h3>
+                                <div class="timeline__header">
+                                    <h3 class="timeline__title">Адаптивный дизайн</h3>
+                                    <button class="timeline__delete" onclick="deleteEntry(this)">
+                                        <i class="fas fa-times"></i>
+                                    </button>
+                                </div>
                                 <span class="timeline__date">1 декабря 2024</span>
                                 <p class="timeline__description">
                                     Углубляю знания в области responsive design. Изучаю медиа-запросы и mobile-first подход.
@@ -216,6 +237,90 @@
         </div>
     </main>
 
+    <!-- Modal для добавления новой записи -->
+    <div class="modal" id="addEntryModal">
+        <div class="modal__overlay"></div>
+        <div class="modal__content">
+            <button class="modal__close" id="modalClose">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="modal__body">
+                <div class="modal__header">
+                    <h2 class="modal__title">Добавить новую запись</h2>
+                </div>
+                <form class="diary-form" id="diaryForm">
+                    <div class="form-group">
+                        <label for="entryTitle" class="form-label">Заголовок записи</label>
+                        <input type="text" id="entryTitle" class="form-input" placeholder="Введите заголовок" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="entryDate" class="form-label">Дата</label>
+                        <input type="date" id="entryDate" class="form-input" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="entryStatus" class="form-label">Статус</label>
+                        <select id="entryStatus" class="form-select" required>
+                            <option value="completed">Завершено</option>
+                            <option value="in-progress">В процессе</option>
+                            <option value="planned">Запланировано</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="entryDescription" class="form-label">Описание</label>
+                        <textarea id="entryDescription" class="form-textarea" placeholder="Опишите, что вы изучили или сделали..." rows="5" required></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Теги</label>
+                        <div class="tags-selector">
+                            <div class="tags-list">
+                                <label class="tag-option">
+                                    <input type="checkbox" name="tags" value="html">
+                                    <span class="tag tag--html">HTML</span>
+                                </label>
+                                <label class="tag-option">
+                                    <input type="checkbox" name="tags" value="css">
+                                    <span class="tag tag--css">CSS</span>
+                                </label>
+                                <label class="tag-option">
+                                    <input type="checkbox" name="tags" value="js">
+                                    <span class="tag tag--js">JavaScript</span>
+                                </label>
+                                <label class="tag-option">
+                                    <input type="checkbox" name="tags" value="react">
+                                    <span class="tag tag--react">React</span>
+                                </label>
+                                <label class="tag-option">
+                                    <input type="checkbox" name="tags" value="responsive">
+                                    <span class="tag tag--responsive">Адаптивный</span>
+                                </label>
+                                <label class="tag-option">
+                                    <input type="checkbox" name="tags" value="forms">
+                                    <span class="tag tag--forms">Forms</span>
+                                </label>
+                                <label class="tag-option">
+                                    <input type="checkbox" name="tags" value="api">
+                                    <span class="tag tag--api">API</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="button" class="btn btn--secondary" id="cancelBtn">Отмена</button>
+                        <button type="submit" class="btn btn--primary">
+                            <i class="fas fa-plus"></i>
+                            Добавить запись
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
     <footer class="footer">
         <div class="container">
             <div class="footer__content">
@@ -231,5 +336,241 @@
     </footer>
 
     <script src="../scripts/main.js"></script>
+    <script>
+        // Функционал для работы с дневником
+        document.addEventListener('DOMContentLoaded', function() {
+            const addEntryBtn = document.getElementById('addEntryBtn');
+            const addEntryModal = document.getElementById('addEntryModal');
+            const modalClose = document.getElementById('modalClose');
+            const modalOverlay = addEntryModal.querySelector('.modal__overlay');
+            const cancelBtn = document.getElementById('cancelBtn');
+            const diaryForm = document.getElementById('diaryForm');
+            const timeline = document.getElementById('timeline');
+
+            // Загружаем записи из localStorage при загрузке страницы
+            loadEntriesFromStorage();
+
+            // Открытие модального окна
+            addEntryBtn.addEventListener('click', function() {
+                // Устанавливаем сегодняшнюю дату по умолчанию
+                document.getElementById('entryDate').valueAsDate = new Date();
+                addEntryModal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            });
+
+            // Закрытие модального окна
+            function closeModal() {
+                addEntryModal.classList.remove('active');
+                document.body.style.overflow = '';
+                diaryForm.reset();
+            }
+
+            modalClose.addEventListener('click', closeModal);
+            modalOverlay.addEventListener('click', closeModal);
+            cancelBtn.addEventListener('click', closeModal);
+
+            // Закрытие по Escape
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') {
+                    closeModal();
+                }
+            });
+
+            // Обработка отправки формы
+            diaryForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const title = document.getElementById('entryTitle').value;
+                const date = document.getElementById('entryDate').value;
+                const status = document.getElementById('entryStatus').value;
+                const description = document.getElementById('entryDescription').value;
+                
+                // Получаем выбранные теги
+                const selectedTags = Array.from(document.querySelectorAll('input[name="tags"]:checked'))
+                    .map(checkbox => checkbox.value);
+
+                // Создаем новую запись
+                const newEntry = {
+                    id: Date.now(), // Уникальный ID на основе времени
+                    title: title,
+                    date: formatDate(date),
+                    status: status,
+                    description: description,
+                    tags: selectedTags
+                };
+
+                // Добавляем запись в timeline
+                addEntryToTimeline(newEntry);
+                
+                // Сохраняем в localStorage
+                saveEntryToStorage(newEntry);
+                
+                // Закрываем модальное окно и сбрасываем форму
+                closeModal();
+                
+                // Показываем уведомление
+                showNotification('Запись успешно добавлена!', 'success');
+            });
+
+            // Функция для добавления записи в timeline
+            function addEntryToTimeline(entry) {
+                const timelineItem = document.createElement('div');
+                timelineItem.className = `timeline-item ${entry.status}`;
+                timelineItem.setAttribute('data-id', entry.id);
+                
+                const statusIcon = entry.status === 'completed' ? 'fa-check' : 
+                                entry.status === 'in-progress' ? 'fa-sync-alt' : 'fa-clock';
+                
+                const tagsHTML = entry.tags.map(tag => 
+                    `<span class="tag tag--${tag}">${getTagText(tag)}</span>`
+                ).join('');
+                
+                timelineItem.innerHTML = `
+                    <div class="timeline__marker">
+                        <i class="fas ${statusIcon}"></i>
+                    </div>
+                    <div class="timeline__content">
+                        <div class="timeline__header">
+                            <h3 class="timeline__title">${entry.title}</h3>
+                            <button class="timeline__delete" onclick="deleteEntry(this)">
+                                <i class="fas fa-times"></i>
+                            </button>
+                        </div>
+                        <span class="timeline__date">${entry.date}</span>
+                        <p class="timeline__description">${entry.description}</p>
+                        <div class="timeline__tags">
+                            ${tagsHTML}
+                        </div>
+                    </div>
+                `;
+                
+                // Вставляем в начало timeline
+                timeline.insertBefore(timelineItem, timeline.firstChild);
+            }
+
+            // Функция для получения текста тега
+            function getTagText(tag) {
+                const tagMap = {
+                    'html': 'HTML',
+                    'css': 'CSS',
+                    'js': 'JavaScript',
+                    'react': 'React',
+                    'responsive': 'Адаптивный',
+                    'forms': 'Forms',
+                    'api': 'API',
+                    'localstorage': 'LocalStorage',
+                    'bootstrap': 'Bootstrap',
+                    'websocket': 'WebSocket'
+                };
+                return tagMap[tag] || tag;
+            }
+
+            // Функция для форматирования даты
+            function formatDate(dateString) {
+                const date = new Date(dateString);
+                const options = { 
+                    day: 'numeric', 
+                    month: 'long', 
+                    year: 'numeric' 
+                };
+                return date.toLocaleDateString('ru-RU', options);
+            }
+
+            // Функция для сохранения записи в localStorage
+            function saveEntryToStorage(entry) {
+                let entries = JSON.parse(localStorage.getItem('diaryEntries') || '[]');
+                entries.unshift(entry); // Добавляем в начало
+                localStorage.setItem('diaryEntries', JSON.stringify(entries));
+            }
+
+            // Функция для загрузки записей из localStorage
+            function loadEntriesFromStorage() {
+                const entries = JSON.parse(localStorage.getItem('diaryEntries') || '[]');
+                entries.forEach(entry => {
+                    addEntryToTimeline(entry);
+                });
+            }
+
+            // Функция для показа уведомлений
+            function showNotification(message, type = 'info') {
+                const notification = document.createElement('div');
+                notification.className = `notification notification--${type}`;
+                notification.innerHTML = `
+                    <div class="notification__content">
+                        <i class="fas fa-${type === 'success' ? 'check' : 'info'}"></i>
+                        <span>${message}</span>
+                    </div>
+                `;
+                
+                document.body.appendChild(notification);
+                
+                // Анимация появления
+                setTimeout(() => notification.classList.add('show'), 100);
+                
+                // Автоматическое скрытие
+                setTimeout(() => {
+                    notification.classList.remove('show');
+                    setTimeout(() => {
+                        if (notification.parentNode) {
+                            notification.parentNode.removeChild(notification);
+                        }
+                    }, 300);
+                }, 3000);
+            }
+        });
+
+        // Глобальная функция для удаления записей
+        function deleteEntry(button) {
+            if (!confirm('Вы уверены, что хотите удалить эту запись?')) {
+                return;
+            }
+            
+            const timelineItem = button.closest('.timeline-item');
+            const entryId = timelineItem.getAttribute('data-id');
+            
+            // Удаляем из DOM
+            timelineItem.style.opacity = '0';
+            timelineItem.style.transform = 'translateX(-20px)';
+            
+            setTimeout(() => {
+                timelineItem.remove();
+                
+                // Удаляем из localStorage
+                if (entryId) {
+                    let entries = JSON.parse(localStorage.getItem('diaryEntries') || '[]');
+                    entries = entries.filter(entry => entry.id != entryId);
+                    localStorage.setItem('diaryEntries', JSON.stringify(entries));
+                }
+                
+                // Показываем уведомление
+                showNotification('Запись удалена', 'info');
+            }, 300);
+        }
+
+        // Глобальная функция для показа уведомлений
+        function showNotification(message, type = 'info') {
+            const notification = document.createElement('div');
+            notification.className = `notification notification--${type}`;
+            notification.innerHTML = `
+                <div class="notification__content">
+                    <i class="fas fa-${type === 'success' ? 'check' : type === 'error' ? 'exclamation-triangle' : 'info'}"></i>
+                    <span>${message}</span>
+                </div>
+            `;
+            
+            document.body.appendChild(notification);
+            
+            setTimeout(() => notification.classList.add('show'), 100);
+            
+            setTimeout(() => {
+                notification.classList.remove('show');
+                setTimeout(() => {
+                    if (notification.parentNode) {
+                        notification.parentNode.removeChild(notification);
+                    }
+                }, 300);
+            }, 3000);
+        }
+    </script>
 </body>
 </html>
